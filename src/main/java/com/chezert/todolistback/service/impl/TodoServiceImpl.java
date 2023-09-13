@@ -2,10 +2,12 @@ package com.chezert.todolistback.service.impl;
 
 import com.chezert.todolistback.mapper.TodoMapper;
 import com.chezert.todolistback.model.dto.TodoDto;
+import com.chezert.todolistback.model.entity.Todo;
 import com.chezert.todolistback.repository.TodoRepository;
 import com.chezert.todolistback.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,5 +38,14 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public void deleteById(Long id) {
         todoRepository.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public void completeById(Long id) {
+        Todo todoToComplete = todoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No todo with id = " + id));
+        todoToComplete.setIsCompleted(!todoToComplete.getIsCompleted());
+        todoRepository.save(todoToComplete);
     }
 }

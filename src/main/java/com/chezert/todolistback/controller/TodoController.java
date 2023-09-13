@@ -27,6 +27,11 @@ public class TodoController {
         return todoService.getById(id);
     }
 
+    @PatchMapping("/{id}/complete")
+    public void completeById(@PathVariable Long id) {
+        todoService.completeById(id);
+    }
+
     @PostMapping
     public void saveNewTodo(@RequestBody TodoDto todoDto) {
         log.info("Trying to save new todo:\n{}", todoDto);

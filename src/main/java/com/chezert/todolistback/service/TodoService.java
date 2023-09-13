@@ -13,4 +13,6 @@ public interface TodoService {
     void save(TodoDto todoDto);
 
     void deleteById(Long id);
+
+    void completeById(Long id);
 }
