@@ -1,0 +1,3 @@
+-- INSERT INTO todo(name, is_completed, priority)
+-- VALUES ('Todo1', false, 'HIGH'),
+--        ('Todo2', false, 'NORMAL');
